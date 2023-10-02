@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Xml.Linq;
+using ClassLib;
 
 namespace LINQDemo.Data;
 
@@ -96,6 +97,10 @@ public class DataSource
 
     public List<Product> GetCartForPerson(int index)
     {
+        if (index < 0 || index > People.Count)
+        {
+            throw new IdiotUserException();
+        }
         return People[index].Cart;
     }
 }
